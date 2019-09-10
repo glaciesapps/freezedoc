@@ -1,8 +1,9 @@
 # Introduction
 
-This book aims to be a comprehensive guide to IceHrm. We’ll cover topics such as installing IceHrm and getting it up and running, configuring IceHrm and using icehrm modules.
+This book aims to be a comprehensive guide to developing applications using Freeze. 
+[https://github.com/glaciesapps/freeze](https://github.com/glaciesapps/freeze)
 
-## What is IceHrm? {#what-is-icehrm}
 
-[IceHrm](http://icehrm.com/) is a Human resource management system for small and medium-sized organizations. It covers all the basic HRM needs of a company such as leave management, time management and handling employee information.
+## What is Freeze?
 
+Freeze is a starter framework for building employee centric web applications
