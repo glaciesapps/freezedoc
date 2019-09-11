@@ -7,15 +7,15 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 
 
 
-### Selecting remote interpreter
+## Selecting remote interpreter
 
-- In the Settings dialog (Ctrl+Alt+S), click PHP under Languages & Frameworks.
-- On the PHP page that opens, click the Browse button next to the CLI Interpreter field.
-- Click the + and select From Docker,Vagrant,VM and Remote ...
+- In the Settings dialog (Ctrl+Alt+S), click **PHP** under **Languages & Frameworks**.
+- On the PHP page that opens, click the **Browse** button next to the CLI Interpreter field.
+- Click the **+** and select **From Docker,Vagrant,VM and Remote ...
 
 <img  src="assets/remote_interpreter.png">
 
-- Now Configure Remote PHP Interpreter dialog box opens and  we can select the Vagrant option to automatically populate connection details. In most cases, PhpStorm can also figure out the path to the PHP interpreter on the Vagrant machine. If not, we can adjust it manually.
+- Now **Configure Remote PHP Interpreter** dialog box opens and  we can select the **Vagrant** option to automatically populate connection details. In most cases, PhpStorm can also figure out the path to the PHP interpreter on the Vagrant machine. If not, we can adjust it manually.
 
 <img  src="assets/remote_interpreter2.png">
 <img  src="assets/remote_interpreter3.png">
@@ -24,9 +24,9 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 
 
 
-### Setting up path mappings
+## Setting up path mappings
 
-Go to Servers under PHP and make sure path mappings are correctly matched as shown here.
+Go to **Servers** under **PHP** and make sure path mappings are correctly matched as shown here.
 
 <img  src="assets/path_mapping.png">
 
@@ -34,7 +34,7 @@ Go to Servers under PHP and make sure path mappings are correctly matched as sho
 
 
 
-### Installing XDebug helper for chrome
+## Installing XDebug helper for Chrome
 
 Then you need to install XDebug Helper google extension in your chrome browser. To do that, google “Xdebug Helper” and you will see a link to chrome store with the name Xdebug Helper, which is a chrome extension.
 
@@ -42,12 +42,12 @@ Then you need to install XDebug Helper google extension in your chrome browser. 
 
 
 
-### Debugging dashboard module
+## Debugging dashboard module
 
 Let's take a quick look at debugging dashboard module
 
 - Open /core/admin/dashboard/index.php and set a breakpoint
-- Click Start Listening for PHP Debug Connections button on the top right corner of the IDE.
+- Click **Start Listening for PHP Debug Connections** button on the top right corner of the IDE.
 
 <img  src="assets/breakpoint.png">
 
@@ -64,20 +64,21 @@ Now you can debug from there.
 
 
 
-### Connecting to development DB via PhpStorm
+## Connecting to development DB via PhpStorm
 
-- In the Database tool window (View -> Tool Windows -> Database), click the Data Source Properties icon.
-- In the Data Sources and Drivers dialog, click the + icon and select MySQL.
-- In the General tab provide dev as the Host,User and Password.
+- In the Database tool window (View -> Tool Windows -> Database), click the **Data Source Properties** icon.
+- In the **Data Sources and Drivers** dialog, click the **+** icon and select **MySQL**.
+- In the **General** tab provide dev as the **Host,User** and **Password**.
 
 <img  src="assets/database_general.png">
 
-- Then click SSH/SSL tab and put a tick on Use SSH tunnel checkbox. Provide the details 192.168.40.41 as the Proxy host. vagrant as both Proxy user and Proxy password.
+- Then click **SSH/SSL** tab and put a tick on **Use SSH tunnel** checkbox. Provide the details 192.168.40.41 as the **Proxy host**. vagrant as both **Proxy user** and **Proxy password**.
 
 <img  src="assets/database_ssh.png">
 
 - Now you can test the connection. Then apply the changes.
 
 > If the tables don't load under the Schemas dropdown right click on it.
-Database Tools -> Force Refresh
+
+> Database Tools -> Force Refresh
 
