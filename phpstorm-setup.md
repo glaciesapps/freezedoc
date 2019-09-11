@@ -18,6 +18,7 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 - Now **Configure Remote PHP Interpreter** dialog box opens and  we can select the **Vagrant** option to automatically populate connection details. In most cases, PhpStorm can also figure out the path to the PHP interpreter on the Vagrant machine. If not, we can adjust it manually.
 
 <img  src="assets/remote_interpreter2.png">
+<br>
 <img  src="assets/remote_interpreter3.png">
 
 
