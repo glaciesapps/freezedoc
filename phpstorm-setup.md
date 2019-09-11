@@ -5,6 +5,8 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 
 
 
+
+
 ### Selecting remote interpreter
 
 - In the Settings dialog (Ctrl+Alt+S), click PHP under Languages & Frameworks.
@@ -19,22 +21,33 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 <img  src="assets/remote_interpreter3.png">
 
 
+
+
+
 ### Setting up path mappings
 
 Go to Servers under PHP and make sure path mappings are correctly matched as shown here.
 
 <img  src="assets/path_mapping.png">
 
+
+
+
+
 ### Installing XDebug helper for chrome
 
 Then you need to install XDebug Helper google extension in your chrome browser. To do that, google “Xdebug Helper” and you will see a link to chrome store with the name Xdebug Helper, which is a chrome extension.
+
+
+
 
 
 ### Debugging dashboard module
 
 Let's take a quick look at debugging dashboard module
 
-- Open /core/modules/dashboard/index.php and set a breakpoint
+- Open /core/admin/dashboard/index.php and set a breakpoint
+- Click Start Listening for PHP Debug Connections button on the top right corner of the IDE.
 
 <img  src="assets/breakpoint.png">
 
@@ -46,6 +59,10 @@ When we refresh the page code stops executing at the breakpoint we set.
 Now you can debug from there.
 
 <img  src="assets/debug.png">
+
+
+
+
 
 ### Connecting to development DB via PhpStorm
 
@@ -61,6 +78,6 @@ Now you can debug from there.
 
 - Now you can test the connection. Then apply the changes.
 
-If the tables don't load under the Schemas dropdown right click on it.
+> If the tables don't load under the Schemas dropdown right click on it.
 Database Tools -> Force Refresh
 
