@@ -11,7 +11,7 @@ Before you start debugging, make sure that you have Xdebug installed and configu
 
 - In the Settings dialog (Ctrl+Alt+S), click **PHP** under **Languages & Frameworks**.
 - On the PHP page that opens, click the **Browse** button next to the CLI Interpreter field.
-- Click the **+** and select **From Docker,Vagrant,VM and Remote ...
+- Click the **+** and select **From Docker,Vagrant,VM and Remote ...**
 
 <img  src="assets/remote_interpreter.png">
 
@@ -71,13 +71,13 @@ Now you can debug from there.
 
 <img  src="assets/database_general.png">
 
-- Then click **SSH/SSL** tab and put a tick on **Use SSH tunnel** checkbox. Provide the details 192.168.40.41 as the **Proxy host**. vagrant as both **Proxy user** and **Proxy password**.
+- Then click **SSH/SSL** tab and put a tick on **Use SSH tunnel** checkbox. Provide  192.168.40.41 as the **Proxy host**. vagrant as both **Proxy user** and **Proxy password**.
 
 <img  src="assets/database_ssh.png">
 
 - Now you can test the connection. Then apply the changes.
 
-> If the tables don't load under the Schemas dropdown right click on it.
+> If the tables don't load under the Schemas dropdown, right click on it.
 
 > Database Tools -> Force Refresh
 
