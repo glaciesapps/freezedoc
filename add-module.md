@@ -60,7 +60,8 @@ SQL;
 <img  src="assets/list.png">
 
   
-- Add the module to **core/admin** and **core/modules** (note that if a module has only admin section adding it to core/admin is enough).    
+- Add the module to **core/admin** and **core/modules** (note that if a module has only admin section adding it to core/admin is enough).  
+Here we can create the tabs which belong to the new module.
 
 <img  src="assets/core-index.png">  
 
@@ -92,8 +93,8 @@ echo \Classes\UIManager::getInstance()->renderModule($moduleBuilder);
 include APP_BASE_PATH.'footer.php';
 ```
 
-Edit the meta.json file. Change the menu value to **Employees** to place the module under that menu.  
-**model_namespace** and manager **values** should be correctly mapped as explained in the next step. 
+Edit the **meta.json** file. Change the menu value to **Employees** to place the module under that menu.  
+**model_namespace** and **manager** values should be correctly mapped as explained in the next step. 
  
 <img  src="assets/meta-json.png">
 
@@ -114,37 +115,156 @@ Edit the meta.json file. Change the menu value to **Employees** to place the mod
 
  ```
 
-- Add related classes to **core/src** (e.g For teams its core/src/Teams )
-each admin module should have the AdminManager class
-its path should be mapped in meta.json under manager key.
+- Add related classes to **core/src** (e.g For teams its core/src/Teams )  
 
-<img  src="assets/teamadminmanager.png">
+Each admin module should have the **AdminManager** class.its path should be mapped in **meta.json** under manager key.
 
-Every database table should have a model class. Include the database table name and edit the functions to give access.
+<img  src="assets/teamadminmanager.png">  
+```
+ public function setupModuleClassDefinitions()
+    {
+        $this->addModelClass('EmployeeTeams');
+        $this->addModelClass('EmployeeTeamMembers');
+    }
+```
+
+Every database table should have a model class. Include the database table name and edit the functions to give access.  
+In this module we need to create 2 model classes.
     
 <img  src="assets/employeeteams.png">
 
-  
+ ```
+ <?php namespace Teams\Common\Model;
 
-- Add module to **web/admin/src** and **web/modules/src** (note that if a module has only admin section adding it to web/admin/src is enough)
-This will build the frontend of the new module. Add the headers and formfields.
-If you want to include data from another table for a dropbox, use select2 as the type and use the model class name of that table for remote-resource.
-We can also use dropdowns with values provided by us using select as the formfield type.
+use Model\BaseModel;
+
+class EmployeeTeamMembers extends BaseModel
+{
+    public $table = 'EmployeeTeamMembers';
+
+    public function getAdminAccess()
+    {
+        return ["get","element","save","delete"];
+    }
+
+    public function getManagerAccess()
+    {
+        return ["get","element","save"];
+    }
+
+    public function getUserAccess()
+    {
+        return [];
+    }
+
+    public function getAnonymousAccess()
+    {
+        return [];
+    }
+}
+ ```
+
+- Add module to **web/admin/src** and **web/modules/src** (note that if a module has only admin section adding it to web/admin/src is enough)  
+
+This will build the frontend of the new module. Add the headers and formfields here.  
+
+If you want to include data from another table for a dropbox, use select2 as the type and use the model class name of that table for remote-resource.We can also use dropdowns with values provided by us using select as the formfield type.
 
 
 <img  src="assets/web-lib.png">  
+
+```
+import AdapterBase from '../../../api/AdapterBase';
+
+class TeamAdapter extends AdapterBase {
+  getDataMapping() {
+    return [
+      'id',
+      'name',
+      'description',
+      'department',
+      'lead',
+    ];
+  }
+
+  getHeaders() {
+    return [
+      { sTitle: 'ID', bVisible: false },
+      { sTitle: 'Name' },
+      { sTitle: 'Description' },
+      { sTitle: 'Department' },
+      { sTitle: 'Lead' },
+    ];
+  }
+
+  getFormFields() {
+    return [
+      ['id', { label: 'ID', type: 'hidden' }],
+      ['name', { label: 'Team Name', type: 'text', help: 'Name of the team' }],
+      ['description', { label: 'Description', type: 'textarea', validation: 'none' }],
+      ['department', { label: 'Department', type: 'select2', 'remote-source': ['CompanyStructure', 'id', 'title'] }],
+      ['lead', { label: 'Lead', type: 'select2', 'remote-source': ['Employee', 'id', 'first_name+last_name'] }],
+    ];
+  }
+}
+
+
+
+class TeamMembersAdapter extends AdapterBase {
+  getDataMapping() {
+    return [
+      'id',
+      'team',
+      'member',
+      'role',
+    ];
+  }
+
+  getHeaders() {
+    return [
+      { sTitle: 'ID', bVisible: false },
+      { sTitle: 'Team' },
+      { sTitle: 'Member' },
+      { sTitle: 'Role' },
+    ];
+  }
+
+  getFormFields() {
+    return [
+      ['id', { label: 'ID', type: 'hidden' }],
+      ['team', { label: 'Team Name', type: 'select2', 'remote-source': ['EmployeeTeams', 'id', 'name'] }],
+      ['member', { label: 'Member', type: 'select2', 'remote-source': ['Employee', 'id', 'first_name+last_name'] }],
+      ['role', { label: 'Role', type: 'select', source: [['Lead', 'Lead'], ['Member', 'Member']] }],
+    ];
+  }
+}
+
+
+module.exports = { TeamAdapter, TeamMembersAdapter };
+
+```
   
 initialize the adapter classes in lib.js
 
 <img  src="assets/web-index.png">  
-  
+
+```
+import {
+  TeamAdapter,
+  TeamMembersAdapter,
+} from './lib';
+
+window.TeamAdapter = TeamAdapter;
+window.TeamMembersAdapter = TeamMembersAdapter;
+
+```
     
 - Add reference to **gulpfile.js**, under **admin-js** and **module-js** tasks (note that if a module has only admin section adding it to admin-js is enough)
 
 <img  src="assets/gulpfile.png">
 
   
-- Do a **vagrant ssh** and run gulp inside /vagrant to rebuild the frontend.
+- Do a **vagrant ssh** and run these commands to rebuild the frontend.
 ```
 ~ $ cd /vagrant
 ~ $ gulp
