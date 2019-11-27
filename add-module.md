@@ -17,9 +17,10 @@ We'll create this module with two tabs named **Teams** and **Team Members**.
 <img  src="assets/list.png">
 
   
-- Add the module to **core/admin** and **core/modules**. (note that if a module has only admin section adding it to core/admin is enough)  
+- Add the module to **core/admin** and **core/modules** (note that if a module has only admin section adding it to core/admin is enough).    
 
 <img  src="assets/core-index.png">  
+
 Edit the meta.json file. Change the menu value to **Employees** to place the module under that menu.  
  
 <img  src="assets/meta-json.png">
