@@ -10,4 +10,4 @@
 * [Database](database.md)
 
 ### Icehrm Modules
-* Add new module
+* [Add new module](add-module.md)
