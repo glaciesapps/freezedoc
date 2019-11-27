@@ -9,3 +9,5 @@
 * [High Level Architecture](architecture.md)
 * [Database](database.md)
 
+### Icehrm Modules
+* Add new module
